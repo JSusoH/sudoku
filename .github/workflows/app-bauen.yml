@@ -33,11 +33,11 @@ jobs:
           name: sudoku-apk
           path: sudoku.apk
 
-      # Auf main: als Release veröffentlichen. Der feste Link
+      # Auf main (und dem Arbeitszweig): als Release veröffentlichen. Der feste Link
       # https://github.com/JSusoH/sudoku/releases/latest/download/sudoku.apk
       # zeigt immer auf die neueste Version.
       - name: Neueste Version veröffentlichen
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/claude/epic-ramanujan-1dx47g')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ github.run_number }}
